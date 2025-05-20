@@ -1,0 +1,55 @@
+title: MCP Blog
+description: A tech blog about cloud computing and certifications
+# The baseurl will be set by GitHub Actions
+baseurl: ""
+url: ""
+github_username: collabnix
+
+# Build settings
+markdown: kramdown
+# Remove theme setting to avoid conflicts with GitHub Pages
+# theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+
+# Pagination
+paginate: 8
+paginate_path: "/page:num/"
+
+# Collections
+collections:
+  authors:
+    output: true
+    permalink: /authors/:path/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Admin"
+  - scope:
+      path: ""
+      type: "authors"
+    values:
+      layout: "author"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Exclude files and folders from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - node_modules/
+  - README.md
