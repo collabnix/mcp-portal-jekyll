@@ -1,0 +1,179 @@
+---
+layout: default
+title: Search
+permalink: /search/
+---
+
+<div class="container">
+  <div class="search-page">
+    <h1 class="page-title">Search Results</h1>
+    
+    <div class="search-container">
+      <form role="search" method="get" class="search-form" action="{{ '/search/' | relative_url }}">
+        <input type="search" class="search-field" placeholder="Search..." value="{{ page.search_term | escape }}" name="q" autofocus>
+        <button type="submit" class="search-submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span class="screen-reader-text">Search</span>
+        </button>
+      </form>
+    </div>
+    
+    <div id="search-results">
+      <!-- Search results will be displayed here -->
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var searchTerm = new URLSearchParams(window.location.search).get('q');
+    if (searchTerm) {
+      document.querySelector('.search-field').value = searchTerm;
+      performSearch(searchTerm);
+    }
+  });
+  
+  function performSearch(searchTerm) {
+    var resultsContainer = document.getElementById('search-results');
+    resultsContainer.innerHTML = '<div class="loading">Searching...</div>';
+    
+    fetch('/assets/js/search.json')
+      .then(response => response.json())
+      .then(data => {
+        var results = [];
+        searchTerm = searchTerm.toLowerCase();
+        
+        for (var i = 0; i < data.length; i++) {
+          var item = data[i];
+          var title = item.title.toLowerCase();
+          var content = item.content.toLowerCase();
+          var categories = item.categories ? item.categories.toLowerCase() : '';
+          var tags = item.tags ? item.tags.toLowerCase() : '';
+          
+          if (title.includes(searchTerm) || 
+              content.includes(searchTerm) || 
+              categories.includes(searchTerm) || 
+              tags.includes(searchTerm)) {
+            results.push(item);
+          }
+        }
+        
+        displayResults(results, searchTerm);
+      })
+      .catch(error => {
+        resultsContainer.innerHTML = '<p>Error loading search data. Please try again later.</p>';
+        console.error('Error fetching search data:', error);
+      });
+  }
+  
+  function displayResults(results, searchTerm) {
+    var resultsContainer = document.getElementById('search-results');
+    
+    if (results.length > 0) {
+      var resultsHTML = '<p class="results-count">Found ' + results.length + ' ' + (results.length === 1 ? 'result' : 'results') + ' for <strong>"' + searchTerm + '"</strong></p>';
+      resultsHTML += '<div class="search-results-list">';
+      
+      for (var i = 0; i < results.length; i++) {
+        var item = results[i];
+        resultsHTML += '<article class="search-result-item">';
+        resultsHTML += '<h2 class="result-title"><a href="' + item.url + '">' + item.title + '</a></h2>';
+        
+        if (item.date) {
+          var date = new Date(item.date);
+          var formattedDate = date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          resultsHTML += '<div class="result-meta"><span class="result-date">' + formattedDate + '</span></div>';
+        }
+        
+        var snippet = getSnippet(item.content, searchTerm, 30);
+        resultsHTML += '<div class="result-excerpt">' + snippet + '</div>';
+        
+        if (item.categories || item.tags) {
+          resultsHTML += '<div class="result-tags">';
+          
+          if (item.categories) {
+            var categories = Array.isArray(item.categories) ? item.categories : [item.categories];
+            for (var j = 0; j < categories.length; j++) {
+              resultsHTML += '<a href="/categories/' + categories[j].toLowerCase().replace(/\s+/g, '-') + '/" class="result-category">' + categories[j] + '</a>';
+            }
+          }
+          
+          if (item.tags) {
+            var tags = Array.isArray(item.tags) ? item.tags : [item.tags];
+            for (var k = 0; k < tags.length; k++) {
+              resultsHTML += '<a href="/tags/' + tags[k].toLowerCase().replace(/\s+/g, '-') + '/" class="result-tag">#' + tags[k] + '</a>';
+            }
+          }
+          
+          resultsHTML += '</div>';
+        }
+        
+        resultsHTML += '</article>';
+      }
+      
+      resultsHTML += '</div>';
+      resultsContainer.innerHTML = resultsHTML;
+    } else {
+      resultsContainer.innerHTML = '<div class="no-results">' +
+        '<p>No results found for <strong>"' + searchTerm + '"</strong></p>' +
+        '<p>Suggestions:</p>' +
+        '<ul>' +
+        '<li>Check the spelling of your search term</li>' +
+        '<li>Try using different keywords</li>' +
+        '<li>Use more general terms</li>' +
+        '<li>Try searching in a specific category</li>' +
+        '</ul>' +
+        '</div>';
+    }
+  }
+  
+  function getSnippet(content, searchTerm, wordCount) {
+    var words = content.split(/\s+/);
+    var searchTermLower = searchTerm.toLowerCase();
+    var searchIndex = -1;
+    
+    // Find the first occurrence of the search term in the content
+    for (var i = 0; i < words.length; i++) {
+      if (words[i].toLowerCase().includes(searchTermLower)) {
+        searchIndex = i;
+        break;
+      }
+    }
+    
+    // If the search term wasn't found in individual words, search the entire content
+    if (searchIndex === -1) {
+      searchIndex = Math.floor(words.length / 2);
+    }
+    
+    // Calculate start and end indices for the snippet
+    var startIndex = Math.max(0, searchIndex - Math.floor(wordCount / 2));
+    var endIndex = Math.min(words.length, startIndex + wordCount);
+    
+    // Adjust startIndex if endIndex was capped
+    if (endIndex === words.length) {
+      startIndex = Math.max(0, words.length - wordCount);
+    }
+    
+    var snippetWords = words.slice(startIndex, endIndex);
+    var snippet = snippetWords.join(' ');
+    
+    // Add ellipsis if we're not starting from the beginning
+    if (startIndex > 0) {
+      snippet = '...' + snippet;
+    }
+    
+    // Add ellipsis if we're not ending at the end
+    if (endIndex < words.length) {
+      snippet = snippet + '...';
+    }
+    
+    // Highlight the search term
+    var regex = new RegExp('(' + searchTerm.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + ')', 'gi');
+    snippet = snippet.replace(regex, '<mark>$1</mark>');
+    
+    return snippet;
+  }
+</script>
