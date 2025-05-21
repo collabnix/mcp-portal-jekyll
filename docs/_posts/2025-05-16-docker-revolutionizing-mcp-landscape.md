@@ -3,7 +3,7 @@ layout: post
 title: "How Docker is Revolutionizing the MCP Landscape"
 categories: [Docker, MCP, Innovation]
 author: Admin
-image: /assets/images/docker-guide.jpg
+image: /assets/images/docker-mcp-revolution.svg
 ---
 
 ## The MCP Revolution
