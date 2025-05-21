@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#f5f7fa" />
+  
+  <!-- Title Text -->
+  <text x="400" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">
+    Model Context Protocol (MCP)
+  </text>
+  
+  <!-- AI Assistant Box -->
+  <rect x="150" y="100" width="200" height="250" rx="20" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
+  <text x="250" y="140" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#0288d1">
+    AI Assistant
+  </text>
+  <text x="250" y="170" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+    (Claude, ChatGPT, etc.)
+  </text>
+  
+  <!-- Tools Box -->
+  <rect x="450" y="100" width="200" height="250" rx="20" fill="#e8f5e9" stroke="#388e3c" stroke-width="2" />
+  <text x="550" y="140" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#388e3c">
+    External Tools
+  </text>
+  <text x="550" y="170" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+    (GitHub, Slack, etc.)
+  </text>
+  
+  <!-- Tool Icons -->
+  <circle cx="490" cy="220" r="20" fill="#f44336" />
+  <text x="490" y="226" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">G</text>
+  
+  <circle cx="550" cy="220" r="20" fill="#4caf50" />
+  <text x="550" y="226" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">S</text>
+  
+  <circle cx="610" cy="220" r="20" fill="#2196f3" />
+  <text x="610" y="226" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">D</text>
+  
+  <circle cx="490" cy="280" r="20" fill="#9c27b0" />
+  <text x="490" y="286" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">K</text>
+  
+  <circle cx="550" cy="280" r="20" fill="#ff9800" />
+  <text x="550" y="286" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">A</text>
+  
+  <circle cx="610" cy="280" r="20" fill="#607d8b" />
+  <text x="610" y="286" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">+</text>
+  
+  <!-- MCP Connection -->
+  <path d="M350 225 L430 225" stroke="#673ab7" stroke-width="4" stroke-dasharray="6,3" />
+  <rect x="350" y="200" width="80" height="50" rx="25" fill="#d1c4e9" stroke="#673ab7" stroke-width="2" />
+  <text x="390" y="232" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#673ab7">
+    MCP
+  </text>
+  
+  <!-- Human User -->
+  <circle cx="250" cy="420" r="20" fill="#ffb74d" stroke="#ef6c00" stroke-width="2" />
+  <path d="M250 395 Q235 380 235 365 Q235 350 250 350 Q265 350 265 365 Q265 380 250 395" fill="#ffb74d" stroke="#ef6c00" stroke-width="2" />
+  <text x="320" y="420" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">
+    Human User
+  </text>
+  
+  <!-- Human to AI Connection -->
+  <path d="M250 350 L250 310" stroke="#ef6c00" stroke-width="3" stroke-dasharray="5,3" />
+  
+  <!-- Explanation Text -->
+  <text x="400" y="390" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+    MCP enables AI assistants to interact with external tools
+  </text>
+  <text x="400" y="410" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">
+    seamlessly, expanding their capabilities beyond chat.
+  </text>
+</svg>
