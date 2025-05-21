@@ -1,0 +1,51 @@
+---
+layout: default
+---
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <p class="post-meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+            {% if page.author %}
+            {% assign author = site.authors | where: "title", page.author | first %}
+            {% if author %}
+            <span class="post-author">by <a href="{{ author.url | relative_url }}">{{ author.name }}</a></span>
+            {% else %}
+            <span class="post-author">by {{ page.author }}</span>
+            {% endif %}
+            {% endif %}
+        </p>
+        <div class="post-categories">
+            {% for category in page.categories %}
+            <a href="{{ '/categories/' | append: category | downcase | relative_url }}" class="category-badge">{{ category }}</a>
+            {% endfor %}
+        </div>
+    </header>
+
+    {% if page.image %}
+    <div class="post-featured-image">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    </div>
+    {% endif %}
+
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    <div class="post-footer">
+        <div class="post-share">
+            <h3>Share this post</h3>
+            <a href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ page.url | absolute_url | uri_escape }}" target="_blank" class="share-button twitter">Twitter</a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url | uri_escape }}&title={{ page.title | uri_escape }}" target="_blank" class="share-button linkedin">LinkedIn</a>
+        </div>
+
+        <div class="post-navigation">
+            {% if page.previous %}
+            <a href="{{ page.previous.url | relative_url }}" class="prev-post">&larr; {{ page.previous.title }}</a>
+            {% endif %}
+            {% if page.next %}
+            <a href="{{ page.next.url | relative_url }}" class="next-post">{{ page.next.title }} &rarr;</a>
+            {% endif %}
+        </div>
+    </div>
+</article>

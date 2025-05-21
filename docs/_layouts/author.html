@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<div class="author-page">
+    <div class="author-header">
+        {% if page.avatar %}
+        <img src="{{ page.avatar | relative_url }}" alt="{{ page.name }}" class="author-avatar">
+        {% else %}
+        <img src="{{ '/assets/images/default-avatar.png' | relative_url }}" alt="{{ page.name }}" class="author-avatar">
+        {% endif %}
+        
+        <div class="author-info">
+            <h1 class="author-name">{{ page.name }}</h1>
+            {% if page.position %}
+            <p class="author-position">{{ page.position }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="author-bio">
+        {{ content }}
+    </div>
+
+    <div class="author-posts">
+        <h2>Posts by {{ page.name }}</h2>
+        {% assign author_posts = site.posts | where: "author", page.title %}
+        
+        {% if author_posts.size > 0 %}
+        <ul class="post-list">
+            {% for post in author_posts %}
+            <li>
+                <span class="post-meta">{{ post.date | date: "%B %d, %Y" }}</span>
+                <h3>
+                    <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h3>
+                <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No posts yet.</p>
+        {% endif %}
+    </div>
+</div>
