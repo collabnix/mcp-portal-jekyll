@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+<div class="home">
+  <h1>MCP Portal</h1>
+  
+  <div class="featured-posts">
+    <h2>Featured Posts</h2>
+    <div class="post-grid">
+      {% for post in site.posts limit:3 %}
+      <div class="post-card">
+        <a href="{{ post.url | relative_url }}">
+          {% if post.image %}
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+          {% else %}
+          <img src="{{ '/assets/images/default-featured.jpg' | relative_url }}" alt="Default featured image">
+          {% endif %}
+          <div class="post-card-content">
+            <h3>{{ post.title }}</h3>
+            <p class="post-meta">{{ post.date | date: '%B %d, %Y' }} ? {{ post.author }}</p>
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <div class="recent-posts">
+    <h2>Recent Posts</h2>
+    <ul class="post-list">
+      {% for post in site.posts offset:3 limit:5 %}
+      <li>
+        <span class="post-meta">{{ post.date | date: '%B %d, %Y' }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h3>
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <div class="categories">
+    <h2>Categories</h2>
+    <div class="category-list">
+      {% assign categories = site.categories | sort %}
+      {% for category in categories %}
+      <a href="{{ '/categories/' | append: category[0] | downcase | relative_url }}" class="category-badge">{{ category[0] }} ({{ category[1].size }})</a>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <div class="authors">
+    <h2>Contributors</h2>
+    <div class="author-list">
+      {% for author in site.authors %}
+      <div class="author-card">
+        <a href="{{ author.url | relative_url }}">
+          {% if author.avatar %}
+          <img src="{{ author.avatar | relative_url }}" alt="{{ author.name }}">
+          {% else %}
+          <img src="{{ '/assets/images/default-avatar.png' | relative_url }}" alt="Default avatar">
+          {% endif %}
+          <h3>{{ author.name }}</h3>
+          {% if author.position %}
+          <p class="author-position">{{ author.position }}</p>
+          {% endif %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <div class="cta-section">
+    <h2>Join Our Community</h2>
+    <p>Connect with other cloud professionals, share your knowledge, and stay updated on the latest cloud technologies.</p>
+    <div class="cta-buttons">
+      <a href="https://github.com/collabnix" class="btn primary">GitHub</a>
+      <a href="https://twitter.com/collabnix" class="btn secondary">Twitter</a>
+    </div>
+  </div>
+</div>
