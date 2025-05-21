@@ -26,25 +26,23 @@ jobs:
         with:
           ruby-version: '3.2' # Choose a version that works with your gems
           bundler-cache: true # Runs bundle install and caches gems automatically
+          working-directory: ./docs
       
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
       
       - name: Build with Jekyll
-        # Use GitHub Pages gem if you want to ensure the same versions
-        # Otherwise, use your project's Gemfile
         run: |
+          cd docs
           bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-          # Explicitly set source directory to current directory
-          PAGES_REPO_NWO: ${{ github.repository }}
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "_site/"
+          path: "docs/_site/"
 
   deploy:
     environment:
