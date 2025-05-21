@@ -1,0 +1,28 @@
+---
+layout: default
+title: Orchestration Posts
+---
+
+<div class="category-page">
+    <h1>Orchestration Posts</h1>
+    
+    <div class="category-posts">
+        {% assign category_posts = site.categories.Orchestration %}
+        
+        {% if category_posts.size > 0 %}
+        <ul class="post-list">
+            {% for post in category_posts %}
+            <li>
+                <span class="post-meta">{{ post.date | date: "%B %d, %Y" }}</span>
+                <h3>
+                    <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h3>
+                <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No posts in this category yet.</p>
+        {% endif %}
+    </div>
+</div>
