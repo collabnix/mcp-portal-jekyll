@@ -3,7 +3,7 @@ layout: post
 title: "A Laymen Guide to Model Context Protocol"
 categories: [MCP, AI, Docker]
 author: Admin
-image: /assets/images/docker-guide.jpg
+image: /assets/images/mcp-laymen-guide.svg
 ---
 
 ## Introduction to Model Context Protocol (MCP)
