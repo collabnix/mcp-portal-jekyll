@@ -3,7 +3,7 @@ layout: post
 title: "What is Docker MCP Toolkit and What Problem Does it Solve?"
 categories: [Docker, MCP, DevTools]
 author: Admin
-image: /assets/images/k8s-vs-swarm.jpg
+image: /assets/images/docker-mcp-toolkit.svg
 ---
 
 ## Understanding the Docker MCP Toolkit
