@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#f9f9fd" />
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#333">
+    Docker Revolutionizing MCP Landscape
+  </text>
+
+  <!-- Left Side: Traditional Approach -->
+  <rect x="50" y="90" width="300" height="250" rx="10" fill="#ede7f6" stroke="#673ab7" stroke-width="2" opacity="0.7" />
+  <text x="200" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#673ab7">
+    Traditional MCP Approach
+  </text>
+  
+  <!-- Scattered Tools Icons -->
+  <circle cx="100" cy="160" r="18" fill="#f44336" opacity="0.8" />
+  <circle cx="150" cy="180" r="15" fill="#2196f3" opacity="0.8" />
+  <circle cx="200" cy="150" r="20" fill="#4caf50" opacity="0.8" />
+  <circle cx="250" cy="190" r="17" fill="#ff9800" opacity="0.8" />
+  <circle cx="120" cy="220" r="16" fill="#9c27b0" opacity="0.8" />
+  <circle cx="180" cy="240" r="14" fill="#607d8b" opacity="0.8" />
+  <circle cx="230" cy="210" r="19" fill="#795548" opacity="0.8" />
+  
+  <!-- Fragmentation Illustration -->
+  <path d="M100 280 L120 290 L140 280 L160 290 L180 280 L200 290 L220 280 L240 290 L260 280" 
+        stroke="#673ab7" stroke-width="2" fill="none" stroke-dasharray="5,3" />
+  
+  <text x="200" y="320" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#673ab7">
+    Fragmented, Complex, Insecure
+  </text>
+
+  <!-- Right Side: Docker MCP Approach -->
+  <rect x="450" y="90" width="300" height="250" rx="10" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
+  <text x="600" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#0288d1">
+    Docker MCP Approach
+  </text>
+  
+  <!-- Docker Container Stack -->
+  <rect x="530" y="150" width="140" height="30" rx="5" fill="#0288d1" />
+  <text x="600" y="170" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="white">
+    Docker MCP Catalog
+  </text>
+  
+  <rect x="530" y="180" width="140" height="30" rx="5" fill="#039be5" />
+  <text x="600" y="200" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="white">
+    Containerized MCP Tools
+  </text>
+  
+  <rect x="530" y="210" width="140" height="30" rx="5" fill="#03a9f4" />
+  <text x="600" y="230" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="white">
+    Secure Credential Store
+  </text>
+  
+  <rect x="530" y="240" width="140" height="30" rx="5" fill="#29b6f6" />
+  <text x="600" y="260" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="white">
+    Enterprise Controls
+  </text>
+  
+  <text x="600" y="320" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#0288d1">
+    Unified, Simple, Secure
+  </text>
+
+  <!-- Center Arrow -->
+  <path d="M350 180 Q400 120 450 180" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)" />
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  <text x="400" y="140" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+    Revolution
+  </text>
+
+  <!-- Docker Whale Logo (Simplified) -->
+  <rect x="375" y="200" width="50" height="40" rx="5" fill="#0288d1" />
+  <path d="M380 215 h10 v-10 h10 v10 h10 v10 h-30 z" fill="white" />
+  
+  <!-- Bottom Banner -->
+  <rect x="100" y="380" width="600" height="50" rx="10" fill="#e8eaf6" stroke="#3f51b5" stroke-width="2" />
+  <text x="400" y="412" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#3f51b5">
+    Transforming AI Tools with Container Principles
+  </text>
+</svg>
